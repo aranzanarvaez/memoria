@@ -4,8 +4,11 @@ from freegames import path
 
 car = path('car.gif')
 tiles = list(range(32)) * 2
-state = {'mark': None}
+state = {'mark': None,"count":0}
 hide = [True] * 64
+writer = Turtle(visible=False)
+taps=0
+
 
 def square(x, y):
     "Draw white square with black outline at (x, y)."
@@ -17,6 +20,7 @@ def square(x, y):
     for count in range(4):
         forward(50)
         left(90)
+
     end_fill()
 
 def index(x, y):
@@ -31,13 +35,16 @@ def tap(x, y):
     "Update mark and hidden tiles based on tap."
     spot = index(x, y)
     mark = state['mark']
-
+    global taps
+    taps +=1
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+   
+    
 
 def draw():
     "Draw image and tiles."
@@ -52,14 +59,18 @@ def draw():
             square(x, y)
 
     mark = state['mark']
+    
 
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 26, y+5)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], align="center",font=('Arial', 30, 'normal'))
+    goto(0,210)
+    write (taps,font=("Arial",20))
 
+   
     update()
     ontimer(draw, 100)
 
@@ -68,6 +79,7 @@ setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
 tracer(False)
+addshape(car)
 onscreenclick(tap)
 draw()
 done()
