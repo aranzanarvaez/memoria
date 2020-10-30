@@ -73,24 +73,10 @@ def draw():
         if tiles[mark]<=8:
             up()
             goto(x + 26, y+5)
-            color('yellow')
+            color(tiles[mark]*7, 255-tiles[mark]*3, 200-tiles[mark]*5) #Cambia los colores de los números en un rango de 0-255 de rgb
             write(tiles[mark], align="center",font=('Arial', 30, 'normal'))#Si el número esta dentro del rango de 1 a 8 será de color amarillo
-        elif tiles[mark]>=9 and tiles[mark]<=16:
-            up()
-            goto(x + 26, y+5)
-            color('blue')
-            write(tiles[mark], align="center",font=('Arial', 30, 'normal'))#Si el número esta dentro del rango de 9 a 16 será de color azul
-        elif tiles[mark]>=17 and tiles[mark]<=24:
-            up()
-            goto(x + 26, y+5)
-            color('purple')
-            write(tiles[mark], align="center",font=('Arial', 30, 'normal'))#Si el número esta dentro del rango de 17 a 24 será de color morado
-        elif tiles[mark]>=25 and tiles[mark]<=32:
-            up()
-            goto(x + 26, y+5)
-            color('pink')
-            write(tiles[mark], align="center",font=('Arial', 30, 'normal'))#Si el número esta dentro del rango de 25 a 32 será de color rosa
-
+      
+           
     color('red')
     up()
     goto(-190, 180)
@@ -109,6 +95,7 @@ def draw():
 
 shuffle(tiles)
 setup(420, 420, 370, 0)
+colormode(255)
 addshape(car)
 hideturtle()
 tracer(False)
