@@ -1,3 +1,7 @@
+#Memoria.py
+#Carla Perez, Aranza Garcia
+#Juego de memoria 
+
 from random import *
 from turtle import *
 from freegames import path
